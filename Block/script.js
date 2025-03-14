@@ -4,13 +4,6 @@
 //if you made it here, you're somewhat a skid but at least you knew to click script.js
 //BLOOK DEFINITIONS START
 //if(!localStorage.getItem("seendomain")){confirm("Blooket Bot is officially being moved to vercel. The glitch version will no longer be recieving updates. Press OK to redirect.")?
-if (window.location.protocol !== "file:") {
-    const onlinecountws = new WebSocket("ws://localhost:8080");
-    let ws = new WebSocket("ws://localhost:8080");
-} else {
-    console.warn("WebSockets are disabled in file:// mode.");
-}
-window.open("https://blooketbot.vercel.app/"):null;localStorage.setItem("seendomain",!0);}
 //im not making an official version for vercel so forget all of that nonsense up there
 //stewart can't code without react and firebase
 //bro had to pay someone to code auth into firebase
@@ -2137,7 +2130,7 @@ document.querySelector("#drag").addEventListener("mouseup", (e) => {
   dragging = false;
 });
 async function genToken(gid, name) {
-  const { fbToken, fbShardURL } = await fetch("join", {
+  const { fbToken, fbShardURL } = await fetch("https://blooketbot.glitch.me/join", {
     body: JSON.stringify({
       id: gid,
       name: name,
@@ -2147,6 +2140,7 @@ async function genToken(gid, name) {
     },
     method: "POST",
   }).then((e) => e.json());
+
   return {
     gid,
     name,
@@ -2154,6 +2148,7 @@ async function genToken(gid, name) {
     fbShardURL,
   };
 }
+
 async function useToken(token) {
   const { gid, name, fbToken, fbShardURL } = token;
   await connect(
